@@ -21,7 +21,8 @@ html {
   overflow-x: hidden;
 }
 section {
-  padding: 2rem 9%;
+  margin-top: 8rem;
+  padding: 2rem 4%;
 }
 .titulo {
   text-align: center;
@@ -48,91 +49,39 @@ section {
   background: var(--cafe);
 }
 
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  padding: 1rem 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1000;
-  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
-}
-
-header .logo {
-  font-size: 2rem;
-  color: #333;
-  font-weight: bold;
-}
-
-header .logo span {
-  color: var(--cafe);
-}
-
-header .navbar a {
-  font-size: 1.6rem;
-  padding: 0 1rem;
-  color: #666;
-}
-
-header .navbar a:hover {
-  color: var(--cafe);
-}
-
-header .icons a {
-  font-size: 2rem;
-  color: #333;
-  margin-left: 1rem;
-}
-
-header .icons a:hover {
-  color: var(--cafe);
-}
-
-header #toggler {
-  display: none;
-}
-
-header .fa-bars {
-  font-size: 2rem;
-  color: #333;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border: 1rem solid rgba(0, 0, 0, 0.3);
-  display: none;
-}
 /*CSS Pagina principal*/
 .inicio {
-  margin-top: 6rem;
   display: flex;
   align-items: start;
   justify-content: start;
   min-height: 100vh;
+  background: white;
 }
 
 .inicio > .content {
-  max-width: 50rem;
-  margin: 0;
+  max-width: 55rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
   text-align: left;
-  background: rgba(255, 255, 255, 0.8);
+  background: white;
   padding: 2rem;
   border-radius: 10px;
 }
 
 .inicio > .content > h3 {
-  font-size: 4rem;
+  font-size: 6rem;
   color: #333;
+  text-align: left;
 }
 
 .inicio > .content > span {
-  font-size: 2rem;
+  font-size: 3.5rem;
   color: var(--cafe);
   padding: 1rem 0;
   line-height: 1.5;
+  text-align: left;
 }
 
 .inicio > .content > p {
@@ -140,6 +89,7 @@ header .fa-bars {
   color: #999;
   padding: 1rem 0;
   line-height: 1.5;
+  text-align: left;
 }
 
 /*Sobre nosostros*/
@@ -189,40 +139,58 @@ header .fa-bars {
   line-height: 1.5;
 }
 
-/*Footer*/
+/*Media Queries*/
 
-.footer .box-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+@media (max-width: 991px) {
+  html {
+    font-size: 55%;
+  }
+  header {
+    padding: 2rem;
+  }
+  section {
+    padding: 2rem;
+  }
+  .inicio {
+    background-position: left;
+  }
 }
-.footer .box-container .box {
-  flex: 1 1 25rem;
+@media (max-width: 778px) {
+  header .fa-bars {
+    display: block;
+  }
+  header .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #eee;
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+  header #toggler:checked ~ .navbar {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+
+  header .navbar a {
+    margin: 1.5rem;
+    padding: 1.5rem;
+    background: #fff;
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
+    display: block;
+  }
+  .home .content h3 {
+    font-size: 5rem;
+  }
+  .home .content span {
+    font-size: 2.5rem;
+  }
 }
-.footer .box-container .box h3 {
-  color: #333;
-  font-size: 2.5rem;
-  padding: 1rem 0;
-}
-.footer .box-container .box a {
-  display: block;
-  color: #666;
-  font-size: 1.5rem;
-  padding: 1rem 0;
-}
-.footer .box-container .box a:hover {
-  color: var(--cafe);
-  text-decoration: underline;
-}
-.footer .box-container .box img {
-  margin-top: 1rem;
-}
-.footer .credit {
-  text-align: center;
-  padding: 1.5rem;
-  margin-top: 1.5rem;
-  padding-top: 2.5rem;
-  font-size: 2rem;
-  color: #333;
-  border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+  .titulo {
+    font-size: 3rem;
+  }
 }
