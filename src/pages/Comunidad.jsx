@@ -1,23 +1,25 @@
-import React from "react";
 import "./Comunidad.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import UserIcon from "../component/utilidades/UserIcon";
 
 export default function Comunidad() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "http://localhost:8080/post/lista/PorFecha",
+    })
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <>
-      <nav>
-        <div className="nav-left">
-          <img src="" className="logo" alt="Logo" />
-        </div>
-        <div className="nav-right">
-          <div className="busqueda">
-            <i className="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search" />
-          </div>
-          <div className="nav-user-icon online">
-            <img src="" alt="User Icon" />
-          </div>
-        </div>
-      </nav>
       <div className="container">
         <div className="left-sidebar">
           <div className="imp-links">
@@ -36,10 +38,11 @@ export default function Comunidad() {
         <div className="main-content">
           <div className="escribir-post-container">
             <div className="user-profile">
-              <img src="" alt="User Profile" />
+              <img src="" alt="" />
+              {/* avatar de la persona */}
               <div>
-                <p>Carlos Sainz</p>
-                <small>Publico</small>
+                <p>Carlos Sainz</p> {/* usename de la persona */}
+                {/* quitar y ademas quitar .user-profile small en comunidad.css */}
               </div>
             </div>
             <div className="post-input-container">
@@ -48,6 +51,7 @@ export default function Comunidad() {
                 placeholder="Que estas pensando, Carlos?"
               ></textarea>
               <div className="add-post-links">
+                {/* si desea agregar foto, emoji
                 <a href="#">
                   <img src="" alt="" />
                   Foto/video
@@ -56,39 +60,51 @@ export default function Comunidad() {
                   <img src="" alt="" />
                   Emoji
                 </a>
+               */}
               </div>
             </div>
           </div>
-          <div className="post-container">
-            <div className="post-row">
-              <div className="user-profile">
-                <img src="" alt="User Profile" />
-                <div>
-                  <p>Carlos Sainz</p>
-                  <span>Mes Dia Año, Hora</span>
+          {data.length && (
+            <div className="post-container">
+              {data.map((item) => (
+                <div key={item.postId}>
+                  <div className="post-row">
+                    <div className="user-profile">
+                      <UserIcon nombre={item.usuarioNombre} />
+                      {/* avatar de la persona */}
+                      <div>
+                        <p>{item.postTitulo}</p>
+                        {/* username de la persona */}
+                        <span>{item.createdAt}</span>
+                        {/* fecha de publicación */}
+                      </div>
+                    </div>
+                    <a href="#"></a>
+                    {/* editar publicación */}
+                  </div>
+                  <p className="post-text">{item.postTexto}</p>
                 </div>
-              </div>
-              <a href="#"></a>
-            </div>
-            <p className="post-text">
-              Muy buena esta página web, muy recomendable para todos los que
-              empiezan en el compost
-            </p>
-            <img src="" className="post-img" alt="Post Image" />
-            <div className="post-row">
-              <div className="activity-icons">
-                <div>
-                  <i className="fa-solid fa-heart"></i>20
+              ))}
+              {/* contenido del post */}
+              <img src="" className="post-img" alt="Post Image" />
+              {/* si es que el post lleva imagen */}
+              <div className="post-row">
+                <div className="activity-icons">
+                  <div>
+                    <i className="fa-solid fa-heart"></i>20
+                  </div>
+                  {/* me gusta */}
+                  <div>
+                    <i className="fa-regular fa-comment"></i>4
+                  </div>
+                  {/* comentarios */}
                 </div>
-                <div>
-                  <i className="fa-regular fa-comment"></i>4
-                </div>
-              </div>
-              <div className="post-profile-icon">
+                {/* <div className="post-profile-icon">
                 <img src="" alt="Post Profile Icon" />
+              </div>  comentarios */}
               </div>
             </div>
-          </div>
+          )}
         </div>
         <div className="right-sidebar">
           <div className="sidebar-title">
@@ -100,7 +116,7 @@ export default function Comunidad() {
               <h3>6</h3>
               <span>Diciembre</span>
             </div>
-            <div className="left-evento">
+            <div className="right-evento">
               <h4>Lanzamiento</h4>
               <p>Generation</p>
               <a href="#">Más información</a>

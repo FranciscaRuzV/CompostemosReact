@@ -1,6 +1,7 @@
 body {
   background: #efefef;
 }
+/*Nav de comunidad (pero no esta en uso)*/
 nav {
   display: flex;
   align-items: center;
@@ -11,7 +12,7 @@ nav {
   top: 0;
   z-index: 100;
 }
-.logo {
+.logo-comunidad {
   width: 160px;
   margin-right: 45px;
 }
@@ -60,24 +61,24 @@ nav {
   top: 0;
   right: 0;
 }
+/*Termina el nav*/
 
+/*Contenido de la página*/
 .container {
   display: flex;
   justify-content: space-between;
-  padding: 13px 5%;
+  padding: 2rem 5%;
+  margin-top: 8rem;
 }
 .left-sidebar {
   flex-basis: 25%;
   margin-right: 10px;
-  position: sticky;
-  top: 70px;
   align-self: flex-start;
+  font-size: 15px;
 }
 .right-sidebar {
   flex-basis: 25%;
   margin-left: 10px;
-  position: sticky;
-  top: 70px;
   align-self: flex-start;
   background: #fff;
   padding: 20px;
