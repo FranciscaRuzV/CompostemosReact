@@ -155,6 +155,7 @@ section {
     background-position: left;
   }
 }
+
 @media (max-width: 778px) {
   header .fa-bars {
     display: block;
